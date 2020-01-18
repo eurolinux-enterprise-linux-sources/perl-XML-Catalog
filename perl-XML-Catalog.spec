@@ -1,28 +1,17 @@
-# Real version
-%global cpan_version v1.0.1
-
 Name:           perl-XML-Catalog
-Version:        %(echo '%{cpan_version}' | tr -d 'v')
-Release:        1%{?dist}
+Version:        0.02
+Release:        2%{?dist}
 Summary:        Resolve public identifiers and remap system identifiers
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/XML-Catalog/
-Source0:        http://www.cpan.org/authors/id/J/JF/JFEARN/XML-Catalog-%{cpan_version}.tar.gz
+Source0:        http://www.cpan.org/authors/id/E/EB/EBOHLMAN/XML-Catalog-%{version}.tar.gz
 BuildArch:      noarch
-BuildRequires:  perl
 BuildRequires:  perl(ExtUtils::MakeMaker)
-# Run-time
 BuildRequires:  perl(LWP::Simple)
-BuildRequires:  perl(strict)
 BuildRequires:  perl(Text::ParseWords)
 BuildRequires:  perl(URI::URL)
-BuildRequires:  perl(vars)
-BuildRequires:  perl(warnings)
 BuildRequires:  perl(XML::Parser)
-# Tests
-BuildRequires:  perl(Cwd)
-BuildRequires:  perl(Test::More)
 Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
 
 %description
@@ -32,10 +21,8 @@ known as XCatalog) see
 Catalogs may be written in either SOCAT or XML syntax. XML::Catalog will
 assume SOCAT syntax if the catalog is not in well-formed XML syntax.
 
-This module, as of 1.0.0, also supports Oasis XML catalogs.
-
 %prep
-%setup -q -n XML-Catalog-%{cpan_version}
+%setup -q -n XML-Catalog-%{version}
 
 %build
 for i in Changes README; do
@@ -59,13 +46,6 @@ make test
 %{_mandir}/man3/*
 
 %changelog
-* Thu Jan 16 2014 Jitka Plesnikova <jplesnik@redhat.com> - 1.0.1-1
-- 1.0.1 bump
-- Resolves: rhbz#1053947
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.02-3
-- Mass rebuild 2013-12-27
-
 * Fri Nov 23 2012 Jitka Plesnikova <jplesnik@redhat.com> 0.02-2
 - Update description
 
